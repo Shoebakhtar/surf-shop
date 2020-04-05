@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const LocalStrategy = require('passport-local-mongoose');
 const User = require('./models/user');
 const session = require('express-session');
 const mongoose = require('mongoose');
@@ -45,15 +46,18 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Configure Passport and Sessions
+
 app.use(session({
   secret: "surf shop",
   resave: false,
-  saveUninitialized: true
+  saveUninitialized: false
 }))
 
+app.use(passport.initialize());
+app.use(passport.session());
 passport.use(User.createStrategy());
-passport.serializeUser(User.serializeUser);
-passport.deserializeUser(User.deserializeUser);
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Mount routes
 app.use('/', indexRouter);
