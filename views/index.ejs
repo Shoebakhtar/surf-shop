@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-
-  <form action="/login" method="POST">
-    <input type="username" name="username">
-    <input type="password" name="password">
-    <input type="submit">
-  </form>
-</html>
+<% layout('/layouts/boilerplates') -%>
+<h1><%= title %></h1>
+<p>Welcome to <%= title %></p>
+ 
