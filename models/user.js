@@ -1,20 +1,18 @@
-const mongooose = require('mongoose');
+const { date } = require('faker');
+const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
-const Schema = mongooose.Schema;
+const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-   email: String,
-   image: String
-})
+	email: { type: String, unique: true, required: true },
+	image:  {
+		secure_url: { type: String, default: '/images/default-profile.jpg' },
+		public_id: String
+	},
+	resetPasswordToken: String,
+	resetPasswordExpires: Date
+});
 
 UserSchema.plugin(passportLocalMongoose);
 
-module.exports = mongooose.model("User", UserSchema);
-/*
-User
-- email      - string
-- password   - string
-- username   - string
-- image      - string
-- posts      - array of objects ref Post
-*/
+module.exports = mongoose.model('User', UserSchema);

@@ -1,0 +1,13 @@
+<% layout('/layouts/boilerplates') -%>
+
+<h1>Forgot Password</h1>
+
+<form action="/forgot-password?_method=PUT" method="POST">
+    <div>
+        <lable for="email">Email</lable>
+        <input type="email" id="email" name="email" autofocus>
+    </div>
+    <div>
+        <input type="submit" value="Reset Password">
+    </div>
+</form>

@@ -5,7 +5,6 @@ const engine = require('ejs-mate');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const bodyParser = require('body-parser');
 const passport = require('passport');
 const LocalStrategy = require('passport-local-mongoose');
 const User = require('./models/user');
@@ -44,11 +43,10 @@ app.engine('ejs', engine);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'))
@@ -69,12 +67,12 @@ passport.deserializeUser(User.deserializeUser());
 
 // set local variables middleware
 app.use(function(req, res, next){
-  req.user = {
-    // '_id' : '5ea2af08e56a5f3c240a38fb',
-    // '_id' : '5ea3d46690ea391f68aefe1c',
-    '_id' : '5ea6aab3a1139c2448fdb181',
-    'username' : 'Shoeb3'
-  }
+  // req.user = {
+  //   // '_id' : '5ea2af08e56a5f3c240a38fb',
+  //   // '_id' : '5ea3d46690ea391f68aefe1c',
+  //   '_id' : '5ea6aab3a1139c2448fdb181',
+  //   'username' : 'Shoeb3'
+  // }
   res.locals.currentUser = req.user;
   // set default page title
   res.locals.title = 'Surf Shop';

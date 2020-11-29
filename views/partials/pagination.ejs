@@ -4,7 +4,7 @@
     <%}%>
     <% for(let i = 1; i<=posts.pages; i++){%>
         <a href="/posts?page=<%= i %>"
-          <%= i === posts.page ? 'style=color: #000;' : '' %> > <%= i %></a>
+          <%= i === posts.page ? 'style=color:#000;' : '' %> > <%= i %></a>
     <%}%>
     <% if((posts.page + 1) <= posts.pages){%>
         <a href="/posts?page=<%=posts.page + 1 %>">Next</a>
